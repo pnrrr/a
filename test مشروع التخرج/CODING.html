@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AI Chatbot - Ai Web-based Coding</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chat-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .chat-box {
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #8a2be2;
+            border-radius: 5px;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .user-message {
+            background: rgba(138, 43, 226, 0.2);
+            margin-left: 20%;
+        }
+
+        .bot-message {
+            background: rgba(255, 255, 255, 0.1);
+            margin-right: 20%;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #8a2be2;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            background: #8a2be2;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: #6a1cb7;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo"></h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="HOME.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="service.html">SERVICE</a></li>
+                    <li><a href="#">CODING</a></li>
+                    <li><a href="CONTACT.html">CONTACT</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <input class="srch" type="search" name="" placeholder="Type To text">
+                <a href="#"> <button class="btn">Search</button></a>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1>AI <br><span>Chatbot</span></h1>
+            
+            <div class="chat-container">
+                <div class="chat-box" id="chatBox">
+                    <div class="message bot-message">Hello! How can I help you today?</div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const chatBox = document.getElementById('chatBox');
+            const message = userInput.value.trim();
+
+            if (message !== '') {
+                // Add user message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user-message';
+                userDiv.textContent = message;
+                chatBox.appendChild(userDiv);
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = 'message bot-message';
+                    botDiv.textContent = getBotResponse(message);
+                    chatBox.appendChild(botDiv);
+                    
+                    // Auto scroll to bottom
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+
+                userInput.value = '';
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function getBotResponse(message) {
+            // Simple response logic - can be expanded
+            message = message.toLowerCase();
+            if (message.includes('hello') || message.includes('hi')) {
+                return 'Hello! How can I assist you?';
+            } else if (message.includes('how are you')) {
+                return 'I\'m doing well, thank you for asking! How can I help you?';
+            } else if (message.includes('bye')) {
+                return 'Goodbye! Have a great day!';
+            } else if (message.includes('help')) {
+                return 'I can help you with information about our services, coding assistance, or general queries. What would you like to know?';
+            } else {
+                return 'I\'m still learning. Could you please rephrase your question?';
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+</body>
+</html>
