@@ -79,14 +79,11 @@
                     <li><a href="about.html">ABOUT</a></li>
                     <li><a href="service.html">SERVICE</a></li>
                     <li><a href="#">CODING</a></li>
+                    <li><a href="chatbot.html">Chatbot</a></li>
                     <li><a href="CONTACT.html">CONTACT</a></li>
                 </ul>
             </div>
 
-            <div class="search">
-                <input class="srch" type="search" name="" placeholder="Type To text">
-                <a href="#"> <button class="btn">Search</button></a>
-            </div>
         </div>
 
         <div class="content">
@@ -111,20 +108,20 @@
             const message = userInput.value.trim();
 
             if (message !== '') {
-                // Add user message
+
                 const userDiv = document.createElement('div');
                 userDiv.className = 'message user-message';
                 userDiv.textContent = message;
                 chatBox.appendChild(userDiv);
 
-                // Simulate bot response
+
                 setTimeout(() => {
                     const botDiv = document.createElement('div');
                     botDiv.className = 'message bot-message';
                     botDiv.textContent = getBotResponse(message);
                     chatBox.appendChild(botDiv);
                     
-                    // Auto scroll to bottom
+
                     chatBox.scrollTop = chatBox.scrollHeight;
                 }, 1000);
 
@@ -139,22 +136,63 @@
             }
         }
 
-        function getBotResponse(message) {
-            // Simple response logic - can be expanded
-            message = message.toLowerCase();
-            if (message.includes('hello') || message.includes('hi')) {
-                return 'Hello! How can I assist you?';
-            } else if (message.includes('how are you')) {
-                return 'I\'m doing well, thank you for asking! How can I help you?';
-            } else if (message.includes('bye')) {
-                return 'Goodbye! Have a great day!';
-            } else if (message.includes('help')) {
-                return 'I can help you with information about our services, coding assistance, or general queries. What would you like to know?';
-            } else {
-                return 'I\'m still learning. Could you please rephrase your question?';
-            }
+        function detectLanguage(text) {
+
+    const arabicPattern = /[\u0600-\u06FF]/;
+    return arabicPattern.test(text) ? 'Arabic' : 'English';
+}
+
+function getBotResponse(message) {
+    const language = detectLanguage(message);
+    message = message.toLowerCase();
+
+    if (language === 'English') {
+
+        if (message.includes('hello') || message.includes('hi')) {
+            return 'Hello! How can I assist you?';
+        } else if (message.includes('how are you')) {
+            return 'I\'m doing well, thank you for asking! How can I help you?';
+        } else if (message.includes('bye')) {
+            return 'Goodbye! Have a great day!';
+        } else if (message.includes('help')) {
+            return 'I can help you with information about our services, coding assistance, or general queries. What would you like to know?';
+        } else if (message.includes('what is javascript')) {
+            return 'JavaScript is a programming language that enables interactive web pages. It\'s essential for web development!';
+        } else if (message.includes('python')) {
+            return 'Python is a popular programming language known for its simplicity and readability. It\'s great for beginners!';
+        } else if (message.includes('html')) {
+            return 'HTML (HyperText Markup Language) is the standard markup language for creating web pages and web applications.';
+        } else if (message.includes('css')) {
+            return 'CSS (Cascading Style Sheets) is used to style and layout web pages - like colors, fonts, spacing, and more.';
+        } else if (message.includes('thank')) {
+            return 'You\'re welcome! Let me know if you need anything else!';
+        } else {
+            return 'I\'m still learning. Could you please rephrase your question?';
         }
-    </script>
+    } else {
+
+        if (message.includes('مرحبا') || message.includes('اهلا')) {
+            return 'مرحباً! كيف يمكنني مساعدتك؟';
+        } else if (message.includes('كيف حالك')) {
+            return 'أنا بخير، شكراً لسؤالك! كيف يمكنني مساعدتك؟';
+        } else if (message.includes('وداعا') || message.includes('مع السلامة')) {
+            return 'وداعاً! أتمنى لك يوماً سعيداً!';
+        } else if (message.includes('مساعدة')) {
+            return 'يمكنني مساعدتك في الحصول على معلومات حول خدماتنا، أو تقديم مساعدة برمجية. ما الذي تحتاجه؟';
+        } else if (message.includes('جافا سكريبت')) {
+            return 'جافا سكريبت هي لغة برمجة تمكن صفحات الويب التفاعلية. إنها ضرورية لتطوير الويب!';
+        } else if (message.includes('بايثون')) {
+            return 'بايثون هي لغة برمجة شائعة تُعرف ببساطتها وسهولة قراءتها. إنها رائعة للمبتدئين!';
+        } else if (message.includes('شكرا')) {
+            return 'على الرحب والسعة! لا تتردد في طلب المزيد من المساعدة.';
+        } else {
+            return 'أنا ما زلت أتعلم. هل يمكنك إعادة صياغة سؤالك؟';
+        }
+    }
+}    </script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script>
+        
+    </script>
 </body>
 </html>

@@ -34,7 +34,7 @@
 }
 
 .menu{
-    width: 400px;
+    width: 430px;
     float: left;
     height: 70px;
 }
@@ -66,14 +66,14 @@ ul li a:hover{
 }
 
 .search{
-    width: 330px;
+    width: 300px;
     float: left;
     margin-left: 270px;
 }
 
 .srch{
     font-family: 'Times New Roman';
-    width: 200px;
+    width: 116px;
     height: 40px;
     background: transparent;
     border: 1px solid #8a2be2;
@@ -82,7 +82,7 @@ ul li a:hover{
     border-right: none;
     font-size: 16px;
     float: left;
-    padding: 10px;
+    padding: 7px;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
 }
